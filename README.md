@@ -16,5 +16,5 @@ In the future it might have a basic game library.
 - `DNE` is also used to terminate a block of commands
 ### Commands
 |:Command|:meaning|:number of arguments|:number of blocks of code|
-|=|=|=|=|
+|-|-|-|-|
 |:`PRINT`|:prints the argument to the console|:1:|:0:|
