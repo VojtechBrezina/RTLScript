@@ -32,11 +32,11 @@ TT_command = TokenType(
     r"[A-Z]+", 
     lambda text: re.sub(r"\s", "", text)
 )
-
+    
 TT_string_literal = TokenType(
     "STRING_LITERAL", 
     r"\".*?(?<!\\)\"", 
-    lambda text: re.sub(r"\\\"", "\"",text[1:-1])
+    lambda text: re.sub(r"\\\"", "\"", text[1:-1])
 )
 
 TT_number = TokenType(

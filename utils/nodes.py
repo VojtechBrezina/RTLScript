@@ -43,6 +43,8 @@ class BlockNode(Node):
     def build(self, code):
         for c in self.children:
             c.build(code)
+            if isinstance(c, ExpressionNode):
+                code.put_instruction(IC_pop_exp)
 
 class RootNode(BlockNode):
     def __init__(self, tokens, level):
@@ -116,7 +118,8 @@ class StringNode(Node):
         return f"STRING: {t}"
     
     def build(self, code):
-        data_pos = code.put_data(Data(DK_string, self.text))
+        text = text = re.sub(r"\\n", "\n", self.text)
+        data_pos = code.put_data(Data(DK_string, text))
         code.put_instruction(IC_push_string)
         code.put_bytes(data_pos, 4)
 

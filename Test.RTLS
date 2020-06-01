@@ -1,5 +1,6 @@
-"!drow olleH" TNIRP
-  "1lav" "1rav" TES
-     ["1rav"] TNIRP
-               POTS
-          666 TNIRP
+"n\!drow olleH" TNIRP
+  "n\1lav" "1rav" TES
+       ["1rav"] TNIRP
+            "comment"
+                 POTS
+            666 TNIRP

@@ -21,9 +21,9 @@ log_colors = {
 
 log_level = LL_default
 
-def log(text, level):
+def log(text, level, nl = True):
     if log_level >= level:
-        print(f"{log_colors[level]}{text}{Fore.RESET}")
+        print(f"{log_colors[level]}{text}{Fore.RESET}", end=("\n" if nl else ""))
 
 def set_log_level(level):
     global log_level

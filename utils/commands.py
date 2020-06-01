@@ -25,7 +25,10 @@ def BC_set(code):
     code.put_instruction(IC_set)
 Command("SET", 2, BC_set)
 
-Command("FUNCTION", -1, None, True)
-Command("IF", 1, None, True)
-Command("LOOP", 1, None, True)
-Command("BREAK", 0, None)
+def BC_if(code):
+    pass
+Command("IF", 1, BC_if, 2)
+
+#Command("FUNCTION", -1, None, True)
+#Command("LOOP", 1, None, True)
+#Command("BREAK", 0, None)
