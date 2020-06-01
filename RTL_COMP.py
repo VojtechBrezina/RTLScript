@@ -19,8 +19,7 @@ args.pop(0)
 
 help_str = \
 """You passed no arguments to RTL_COMP, so it assumed, you need some help.
-Reading this google document should be all you need:
-https://docs.google.com/document/d/1GKr_WNL3qzZV5JnkhncsI77dgBCWcAdCqXF2qjau9C8/edit?usp=sharing"""
+If you do, visit https://github.com/VojtechBrezina/RTLScript"""
 
 def build_script(script):
     log("Building script...", LL_debug)
