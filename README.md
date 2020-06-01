@@ -15,6 +15,7 @@ In the future it might have a basic game library.
 - when a command needs an undefined number of arguments, the argument list is followed by END (`DNE` i the script)
 - `DNE` is also used to terminate a block of commands
 ### Commands
-|:Command|:meaning|:number of arguments|:number of blocks of code|
-|-|-|-|-|
-|:`PRINT`|:prints the argument to the console|:1:|:0:|
+|Command|meaning|number of arguments|number of blocks of code|
+|-------|-------|-------------------|------------------------|
+|`PRINT`|prints the argument to the console|1|0|
+
