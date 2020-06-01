@@ -17,5 +17,6 @@ In the future it might have a basic game library.
 ### Commands
 |Command|meaning|number of arguments|number of blocks of code|
 |-------|-------|-------------------|------------------------|
-|`PRINT`|prints the argument to the console|1|0|
-
+|PRINT - `TNIRP`|prints the argument to the console|1|0|
+|STOP - `POTS`|immediately halts execution|0|0|
+|SET - `TES`|set a variable to a value (use the first expression as name and the second as value)|2|0|
