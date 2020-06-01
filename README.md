@@ -20,3 +20,5 @@ In the future it might have a basic game library.
 |PRINT&nbsp;-&nbsp;`TNIRP`|prints the argument to the console|1|0|
 |STOP&nbsp;-&nbsp;`POTS`|immediately halts execution|0|0|
 |SET&nbsp;-&nbsp;`TES`|set a variable to a value (use the first expression as name and the second as value)|2|0|
+### Comments
+There is no special syntax for comments, but any expression that is not an argument to a command can serve as a comment. It still gets evaluated because function calls with no return value are the same case, but it does the trick. If you do not want it to be evaluated, just close inside a condition that will always fail or inside some other unrechable space.
