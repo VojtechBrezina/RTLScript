@@ -9,43 +9,58 @@ DK_names = {
 }
 
 class Data:
-    def __init__(self, kind, data):
+    """Represents one item in the `Code`'s data header."""
+
+    def __init__(self, kind: int, data) -> None:
         self.kind = kind
         self.data = data
     
-    def serialize(self):
+    def serialize(self) -> List[int]:
+        """Serializes the `Data` into an array of bytes for file output."""
         pass
 
-    def __str__(self):
+    def __str__(self) -> str:
         k = DK_names[self.kind]
         v = self.data
         if self.kind == DK_string:
             v = v.replace("\n", "\\n")
         return f"{k}:{v}"
     
-    def __repr__(self):
+    def __repr__(self) -> str:
         return self.__str__()
     
-    def __eq__(self, value):
+    def __eq__(self, value: Data) -> bool:
         return self.kind == value.kind and self.data == value.data
 
 
 class Code:
-    def __init__(self):
+    """The runnable compiled code representation. 
+    
+    It has an array of static data like string literals and an array of 8-bit instructions
+    """
+
+    def __init__(self) -> None:
         self.data = []
         self.instructions = []
     
-    def put_data(self, data):
+    def put_data(self, data: Data) -> int:
+        """Inserts a new instance of the `Data` class and returns the new id.
+        
+        If the `Data` is equivalent to some existing item, returns the old id instead to save filesize.
+        """
         if data in self.data:
             return self.data.index(data)
         self.data.append(data)
         return len(self.data) - 1
     
-    def get_data(self, index):
+    def get_data(self, index: int) -> Data:
+        """Retrieves a `Data` item with the given id."""
         return self.data[index]
     
-    def put_instruction(self, instruction, pos = None):
+    def put_instruction(self, instruction: int, pos = None):
+        """Shorthand for putting one byte into the instruction array. See `put_bytes()`."""
         return self.put_bytes(instruction, 1, pos)
+        self.pu
     
     def put_bytes(self, number, count, pos = None):
         if pos == None:
