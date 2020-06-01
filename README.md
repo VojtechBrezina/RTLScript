@@ -10,7 +10,11 @@ In the future it might have a basic game library.
 - every line ends with a command
 - before that there are any arguments the command needs
 - commands and expressions are not separated by anything
-- string literals are closed in double qotes ""
-- reading a variable is done by [] (the variable name is the result of any expression inside the brackes, even a number)
-- when a command needs an undefined number of arguments, the argument list is followed by END (DNE i the script)
-- DNE is also used to terminate a block of commands
+- string literals are closed in double qotes `""`
+- reading a variable is done by `[]` (the variable name is the result of any expression inside the brackes, even a number)
+- when a command needs an undefined number of arguments, the argument list is followed by END (`DNE` i the script)
+- `DNE` is also used to terminate a block of commands
+### Commands
+|:Command|:meaning|:number of arguments|:number of blocks of code|
+|=|=|=|=|
+|:`PRINT`|:prints the argument to the console|:1:|:0:|
