@@ -8,9 +8,9 @@ class RunState:
         self.exp_stack = deque()
         self.code = code
     
-    def start(self):
+    def start(self, pos = 0, prefix = "", lib = False):
         self.scope_push()
-        self.pos = 0
+        self.pos = pos
         while self.pos < len(self.code.instructions):
             self.pos += 1 + instructions[self.code.get_instruction(self.pos)].run(self, self.code, self.pos + 1)
 

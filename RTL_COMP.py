@@ -1,6 +1,7 @@
 import sys
 import re
 import io
+from typing import *
 
 from utils.tokenizing import *
 from utils.tokens import *
@@ -21,23 +22,25 @@ help_str = \
 """You passed no arguments to RTL_COMP, so it assumed, you need some help.
 If you do, visit https://github.com/VojtechBrezina/RTLScript"""
 
-def build_script(script):
+def build_script(script: List[str]) -> Code:
+    """Builds a given script into bytecode."""
     log("Building script...", LL_debug)
     tokens = tokenize(script)
     return build_tokens(tokens)
-    
 
-def load_script(path):
+def load_script(path: str) -> List[str]:
+    """Loads a *.RTLS into a str list."""
     log(f"Loading script from {path}...", LL_debug)
     file = open(path, "rt")
     script = file.readlines()
     file.close()
     return script
 
-def load_code(path):
+def load_code(path: str) -> Code:
+    """Loads a *.RTLS into a Code object."""
     log(f"Loading code from {path}...", LL_debug)
 
-def run_code(code):
+def run_code(code: Code) -> None:
     log("Running code...", LL_debug)
     if code == None:
         log("    Nothing to run.", LL_warning)
@@ -46,12 +49,11 @@ def run_code(code):
     state = RunState(code)
     state.start()
 
-
-def run_script(script):
+def run_script(script: List[str]) -> None:
     log("Running script...", LL_debug)
     run_code(build_script(script))
 
-def format_script(script):
+def format_script(script: List[str]) -> List[str]:
     log("Formating script...", LL_debug)
 
 def save_code(code, path):
