@@ -26,6 +26,13 @@ The expression inside the [] will be evaluated as the variable name.
                               "n\" TNIRP
 
 "
+Variables, that don't exist evaluate to the number 0 
+(so they are false for the purpose of any logical expression)
+"
+["fake name"] TNIRP
+         "n\" TNIRP
+
+"
 Little bonus for those who like to sniff around in the debug info:
 As you can see the string literals of the same value get recycled to sve filesize. 
 "
