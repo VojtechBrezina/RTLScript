@@ -14,7 +14,7 @@ DK_names = {
 class Data:
     """Represents one item in the `Code`'s data header."""
 
-    def __init__(self, kind: int, data) -> None:
+    def __init__(self, kind: int, data: Any) -> None:
         self.kind = kind
         self.data = data
     
@@ -121,7 +121,7 @@ class Code:
                 pos += 1
                 decomp_str = instructions[code].decomp_str
                 ii, decomp_str = decomp_str.split(",")
-                i += ii + " "
+                i += str(pos - 1).rjust(9, "-") + " " + ii + " "
                 for c in decomp_str:
                     if c == "i":
                         i += str(self.get_bytes(pos, 4))
@@ -135,4 +135,4 @@ class Code:
             i = i[:-9]
         except:
             pass
-        return f"    Data:\n{data}\n    Insructions:\n        {ir}\n    Decomposed:\n        {i}"
+        return f"    Data:\n{data}\n    Instructions:\n        {ir}\n    Decomposed:\n        {i}"

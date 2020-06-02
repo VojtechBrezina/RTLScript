@@ -1,0 +1,10 @@
+"
+As everything in this language, IF statements are a bit unusual.
+They use the FI command as expected, but RTLScript has no ELSE or ELSEIF.
+"
+
+       0 FI
+1 TNIRP
+        DNE
+2 TNIRP
+        DNE

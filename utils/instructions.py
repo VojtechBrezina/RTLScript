@@ -61,3 +61,16 @@ def IR_pop_exp(state: RunState, code: Code, pos: int) -> int:
     return 0
 IC_pop_exp = 0x06
 Instruction(IC_pop_exp, IR_pop_exp, "POP_EXP,")
+
+def IR_branch(state: RunState, code: Code, pos: int) -> int:
+    condition = state.exp_pop()
+    if condition == 0 or condition == "":
+        return code.get_bytes(pos, 4) - pos
+    return code.get_bytes(pos + 4, 4) - pos
+IC_branch = 0x07
+Instruction(IC_branch, IR_branch, "BRANCH,ii")
+
+def IR_jump(state: RunState, code: Code, pos: int) -> int:
+    return code.get_bytes(pos, 4) - pos
+IC_jump = 0x08
+Instruction(IC_jump, IR_jump, "JUMP,i")

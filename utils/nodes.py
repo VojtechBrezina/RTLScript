@@ -7,6 +7,7 @@ from utils.instructions import *
 from utils.terminal import *
 from utils.errors import *
 
+node_id_counter = 0
 
 class Node:
     """A representation of an AST node.
@@ -14,16 +15,23 @@ class Node:
     Every `Node` accepts the actual list of tokens and its level 
     in the tree (for debugging).
     """
+
+    def __init_subclass__(cls):
+        return super().__init_subclass__()
+
     def __init__(self, tokens: List[TokenInstance], level: int):
+        global node_id_counter
         self.children = []
+        self.id = node_id_counter
         self.print(level)
         self.print_level = level
+        node_id_counter += 1
         if len(tokens) == 0:
             raise RTLScriptError("RTL_COMP didn't expect the file to end here.")
     
     def print(self, level: int) -> None:
         """Debug-prints the node."""
-        log("        " + ("   |" * level) + ("___" if level > 0 else "") + str(self), LL_debug)
+        log("        " + ("   |" * level) + ("___" if level > 0 else "") + str(self.id).rjust(9, "-") + " " + str(self), LL_debug)
     
     def build(self, code: Code) -> None:
         """An abstract method for building the node using the given `Code`."""
@@ -33,11 +41,14 @@ class BlockNode(Node):
     """A representation of a block of commands + expressions in the AST."""
     def __init__(self, tokens: List[TokenInstance], level: int, needs_end: bool = True):
         super().__init__(tokens, level)
+        self.jump_over = False
+        self.jump_back = False
         while len(tokens) > 0:
             if tokens[0].token_type is TT_command:
                 self.children.append(CommandNode(tokens, level + 1))
             elif tokens[0].token_type is TT_end:
                 if needs_end:
+                    tokens.pop(0)
                     break
                 else:
                     raise RTLScriptError(f"RTL_COMP did not expect END here.")
@@ -50,11 +61,28 @@ class BlockNode(Node):
     def __str__(self) -> str:
         return "BLOCK"
     
+    # This thing is a mess and I know it.
+    # It is probably going to cause some troubles 
+    # when I randomly shift the addresses like 
+    # this, but I don't care rigt now.
     def build(self, code: Code) -> None:
         for c in self.children:
+            if self.jump_over != False:
+                code.put_instruction(IC_jump)
+                code.put_bytes(0, 4)
+            self.begin_pos = len(code.instructions)
+            if self.jump_back != False:
+                self.begin_pos += self.jump_back
             c.build(code)
             if isinstance(c, ExpressionNode):
                 code.put_instruction(IC_pop_exp)
+            if self.jump_back != False:
+                code.put_instruction(IC_jump)
+                code.put_bytes(self.begin_pos, 4)
+            self.end_pos = len(code.instructions)
+            if self.jump_over != False:
+                code.put_bytes(self.end_pos, 4, self.begin_pos - 4)
+            
 
 class RootNode(BlockNode):
     """The root `Node` in the AST is just an ENDless block."""
@@ -67,6 +95,8 @@ class RootNode(BlockNode):
 class CommandNode(Node):
     """An AST node that just builds the specified `Command`."""
     def __init__(self, tokens: List[TokenInstance], level: int):
+        from utils.commands import commands
+
         try:
             self.command = commands[tokens[0].text]
         except:
@@ -97,9 +127,16 @@ class CommandNode(Node):
         return f"COMMAND: {self.command}"
     
     def build(self, code: Code) -> None:
-        for c in self.children:
+        args = self.children
+        if self.command.block != 0:
+            args = args[0:-self.command.block]
+        for c in args:
             c.build(code)
-        self.command.build(code)
+        self.command.build(code, self)
+        if self.command.block != 0:
+            for i, c in enumerate(self.children[-self.command.block:]):
+                c.build(code)
+
 
 class ExpressionNode(Node):
     """Represents the root of any expression."""
