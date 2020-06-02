@@ -11,3 +11,21 @@ It is completely up to you if you will reverse the names or not. I won't judge y
                         666 "string name" TES
 "gnirts" "string name with "\escapes"\n\" TES
                                    96 024 TES
+
+"
+A variable read can be a part of any expression and is closed in []. 
+The expression inside the [] will be evaluated as the variable name.
+"
+                   ["string name"] TNIRP
+                              "n\" TNIRP
+
+["string name with "\escapes"\n\"] TNIRP
+                              "n\" TNIRP
+
+                             [024] TNIRP
+                              "n\" TNIRP
+
+"
+Little bonus for those who like to sniff around in the debug info:
+As you can see the string literals of the same value get recycled to sve filesize. 
+"
