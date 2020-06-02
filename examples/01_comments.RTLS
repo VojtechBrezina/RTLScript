@@ -1,0 +1,15 @@
+"
+This example shows, how any expressions hanging in the air
+are just evaluated, like in other languages making for a simple
+comment syntax.
+"
+"another""example"
+"some numbers:"
+69 420
+
+"
+When you disassemble the example however, you will see
+that the compiled file will be of quite some size, so try
+not to split comments into different expressions if not 
+necessary or wrap them into some unreachable bloc like IF 0
+"

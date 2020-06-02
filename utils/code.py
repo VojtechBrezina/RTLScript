@@ -110,6 +110,7 @@ class Code:
         return pos
     
     def __str__(self) -> str:
+        from utils.instructions import instructions
         data = "\n".join([f"        {d}" for d in self.data])
         ir = " ".join([f"{i:02X}" for i in self.instructions])
         pos = 0

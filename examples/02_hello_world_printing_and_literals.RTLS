@@ -1,0 +1,27 @@
+"Printing i done with the TNIRP command:"
+"n\!dlrow olleH" TNIRP
+
+"
+As you can see, the string literals are RTL like anything here.
+I am just being nice when typing these comments.
+
+Unlike some other languages, RTLScript's print command doesn't 
+append newlines for you.
+The escape sequences supported so far are:
+n\ "\
+Another way of adding a newline is adding it directly into the literal
+as they are taken as they are, but that can mess with formatting
+"
+wen" TNIRP
+enil
+"
+"n\."\taerg"\ era sepacsE" TNIRP
+
+"TNIRP accepts any expression, so numbers are fine too."
+ 666 TNIRP
+"n\" TNIRP
+
+"All RTLScript numbers are 64-bit floats."
+ 9.6 TNIRP
+"n\" TNIRP
+

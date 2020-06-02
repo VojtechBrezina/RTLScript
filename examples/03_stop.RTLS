@@ -1,0 +1,9 @@
+"
+The POTS command is simply used to halt execution immidiatelly.
+When used in an imported file, it will terminate the file itself
+and return to the original file.
+It just behaves exactly ads the end of the file.
+"
+"n\.tnirp lliw sihT" TNIRP
+                      POTS
+     "n\.t'now sihT" TNIRP

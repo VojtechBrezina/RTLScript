@@ -1,0 +1,13 @@
+"
+First something on the variable names.
+The variable names are treated quite differently than in other languages.
+Every varibale acces has to first evaluate an exception and use that as a name.
+That means that variable names can be any valid RTLScript value, even a function
+definition.
+It is completely up to you if you will reverse the names or not. I won't judge you.
+"
+
+"Variables are written to with the TES command, that takes the name and then the value."
+                        666 "string name" TES
+"gnirts" "string name with "\escapes"\n\" TES
+                                   96 024 TES
