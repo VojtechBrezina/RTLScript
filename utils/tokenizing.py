@@ -3,7 +3,8 @@ import re
 from utils.tokens import *
 from utils.terminal import *
 
-def tokenize(script):
+def tokenize(script: List[str]) -> List[TokenInstance]:
+    """Takes an array of lines ant turns it into the token sequence."""
     log("    Reversing madness...", LL_debug)
     for index, line in enumerate(script):
         script[index] = line[::-1]

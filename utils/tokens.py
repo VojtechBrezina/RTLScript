@@ -1,22 +1,30 @@
+from typing import *
+
 from utils.tokenizing import *
 
 class TokenType:
-    def __init__(self, name, regex, clean_func):
+    """A class that defines one type of token.
+    
+    A token type has a name for debugging purposes, a regex to perform the check and a clean function called to e.g. remove
+    qotes from a string literal and unwrap the escapes.
+    """
+    def __init__(self, name: str, regex: str, clean_func: Callable[[str], str]) -> None:
         self.name = name
         self.regex = regex
         self.next_types = []
         self.clean_func = clean_func
     
-    def __str__(self):
+    def __str__(self) -> str:
         return self.name
 
 class TokenInstance:
-    def __init__(self, token_type, text):
+    """Specifies an instance of a token with the actual contents of a specific token."""
+    def __init__(self, token_type: TokenType, text: str):
         self.token_type = token_type
         self.raw = text
         self.text = token_type.clean_func(text)
     
-    def __str__(self):
+    def __str__(self) -> str:
         tmp_text = self.text.replace("\n", "\\n")[::-1]
         tmp_tt = str(self.token_type).ljust(20)
         return f"TT_{tmp_tt}{tmp_text}"

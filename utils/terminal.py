@@ -1,7 +1,8 @@
 import colorama
 from colorama import Fore, Back, Style
 
-def init_terminal():
+def init_terminal() -> None:
+    """Does the colorama init."""
     colorama.init()
 
 LL_default = 0
@@ -21,10 +22,12 @@ log_colors = {
 
 log_level = LL_default
 
-def log(text, level, nl = True):
+def log(text: str, level: int, nl: bool = True) -> None:
+    """Prints a piece of text in the specified loglevel, folowed by \\n by default."""
     if log_level >= level:
         print(f"{log_colors[level]}{text}{Fore.RESET}", end=("\n" if nl else ""))
 
-def set_log_level(level):
+def set_log_level(level: int) -> None:
+    """Sets the global log level (used by the args parser only)."""
     global log_level
     log_level = level

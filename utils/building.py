@@ -3,7 +3,8 @@ from utils.code import *
 from utils.terminal import *
 from utils.errors import *
 
-def build_tokens(tokens):
+def build_tokens(tokens: List[TokenInstance]):
+    """Builds the token sequence into an AST."""
     log("    Planting a tree...", LL_debug)
     if tokens == None:
         log("        Nothing to build.", LL_warning)
