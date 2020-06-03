@@ -2,6 +2,8 @@ from typing import *
 
 from utils.tokenizing import *
 
+TT_all = []
+
 class TokenType:
     """A class that defines one type of token.
     
@@ -9,6 +11,7 @@ class TokenType:
     qotes from a string literal and unwrap the escapes.
     """
     def __init__(self, name: str, regex: str, clean_func: Callable[[str], str]) -> None:
+        TT_all.append(self)
         self.name = name
         self.regex = regex
         self.next_types = []
@@ -49,7 +52,7 @@ TT_string_literal = TokenType(
 
 TT_number = TokenType(
     "NUMBER",
-    r"\d+\.*\d*",
+    r"-?\d+\.?\d*",
     lambda text: text
 )
 
@@ -65,4 +68,4 @@ TT_variable_end = TokenType(
     lambda text: text
 )
 
-TT_all = [TT_end, TT_command, TT_string_literal, TT_number, TT_variable_start, TT_variable_end]
+#TT_all = [TT_end, TT_command, TT_string_literal, TT_number, TT_variable_start, TT_variable_end]
