@@ -109,10 +109,7 @@ class Code:
             self.instructions[pos + i] = c
         return pos
     
-    def __str__(self) -> str:
-        from utils.instructions import instructions
-        data = "\n".join([f"        {d}" for d in self.data])
-        ir = " ".join([f"{i:02X}" for i in self.instructions])
+    def decompose(self) -> str:
         pos = 0
         i = ""
         try:
@@ -135,4 +132,10 @@ class Code:
             i = i[:-9]
         except:
             pass
-        return f"    Data:\n{data}\n    Instructions:\n        {ir}\n    Decomposed:\n        {i}"
+        return i
+    
+    def __str__(self) -> str:
+        from utils.instructions import instructions
+        data = "\n".join([f"        {d}" for d in self.data])
+        ir = " ".join([f"{i:02X}" for i in self.instructions])
+        return f"    Data:\n{data}\n    Instructions:\n        {ir}"
