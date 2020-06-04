@@ -6,9 +6,7 @@ from utils.terminal import *
 def tokenize(script: List[str]) -> List[TokenInstance]:
     from utils.tokens import TT_all
     """Takes an array of lines ant turns it into the token sequence."""
-    log("    Reversing madness...", LL_debug)
-    for index, line in enumerate(script):
-        script[index] = line[::-1]
+    
     script = "".join(script)
     #log(script, LL_debug)
     log("    Grabbing tokens...", LL_debug)
