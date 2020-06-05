@@ -1,7 +1,7 @@
 import re
 
 from utils.tokens import *
-from utils.terminal import *
+from rtlscript.logging import *
 
 def tokenize(script: List[str]) -> List[TokenInstance]:
     from utils.tokens import TT_all

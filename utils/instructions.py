@@ -1,6 +1,6 @@
 from typing import *
 
-from utils.terminal import *
+from rtlscript.logging import *
 from utils.running import *
 
 instructions = dict()

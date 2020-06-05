@@ -1,6 +1,6 @@
 from utils.nodes import *
 from utils.code import *
-from utils.terminal import *
+from rtlscript.logging import *
 from utils.errors import *
 
 def build_tokens(tokens: List[TokenInstance]):

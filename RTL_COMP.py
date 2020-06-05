@@ -93,6 +93,7 @@ if __name__ == "__main__":
             if path.endswith(".RTLC"):
                 pass #TODO run code
             else:
+                script = Script.from_file(path)
                 pass #TODO run script
 
     if not "-autoexit" in args:

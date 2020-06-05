@@ -4,7 +4,7 @@ from utils.commands import *
 from utils.tokens import *
 from utils.code import *
 from utils.instructions import *
-from utils.terminal import *
+from rtlscript.logging import *
 from utils.errors import *
 
 node_id_counter = 0
